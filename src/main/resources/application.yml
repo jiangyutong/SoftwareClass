@@ -1,0 +1,49 @@
+spring:
+  #时间+8小时
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss    #或正则yyyy-MM-dd HH:mm:ss java.text.SimpleDateFormat
+    time-zone: GMT+8    #或UTC
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.100.164.146:3306/Logistics?serverTimezone=UTC
+    username: root
+    password: o1vg5ysbRd8m6hzwg9rsWnv0Jo1GEBu0fHFqpzWtm9a1pno8SSw54sPhjLjYmNR592Xg7K/uNpy7S2UoHV3FOg==
+    type: com.alibaba.druid.pool.DruidDataSource
+    connectionProperties: config.decrypt=true;config.decrypt.key=${spring.datasource.publicKey}
+    publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAK+YqBj14OIT6JbaKIZuFeYE+ys8s6XhgwgLiO8tSKbQXXad94ysj8W4/Vh30i75nTDSEYikaBrUdNc33Z91rGECAwEAAQ==
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,config
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+#    schema:
+#      - classpath:sql/department.sql
+#      - classpath:sql/employee.sql
+#    initialization-mode: always
+  jmx:
+    enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  #不加这句则默认为myisam引擎
+    # 配置redis地址
+  redis:
+    host: 47.100.164.146
+    password: 123456
+  logininfo:
+    myusernum: jyt
+    mypassword: 1234
+    result: 成功
+    myusername: admin

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{YYYY:HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    <!-- 将日志写入数据库 -->
+    <appender name="DB-CLASSIC-MYSQL-POOL" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+            <dataSource class="com.alibaba.druid.pool.DruidDataSource">
+                <driverClassName>com.mysql.cj.jdbc.Driver</driverClassName>
+                <url>jdbc:mysql://47.100.164.146:3306/auge_log?characterEncoding=UTF-8</url>
+                <username>root</username>
+                <password>root</password>
+            </dataSource>
+        </connectionSource>
+    </appender>
+    <root level="ERROR">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="DB-CLASSIC-MYSQL-POOL" />
+    </root>
+
+</configuration>
